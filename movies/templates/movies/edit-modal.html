@@ -1,0 +1,33 @@
+<div class="modal fade" id="edit-modal-{{movies.id}}">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalName">{{movies.fields.Name}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+			</div>
+            <div class="modal-body">
+            	<form action="{% url 'edit' movie_id=movies.id %}" method="post">
+                     {% csrf_token %}
+            		<div class="form-group">
+            			<label for="editName">Name</label>
+                        <input type="text" class="form-control" id="editName" placeholder="Enter Name" name="name" value={{movies.fields.Name}} required>
+            		</div>
+                    <div class="form-group">
+            			<label for="editURL">Picture</label>
+                        <input type="text" class="form-control" id="editURL" placeholder="editURL" name="url" value={{movies.fields.Pictures.0.url}}>
+            		</div>
+                    <div class="form-group">
+            			<label for="editRating">Rating</label>
+                        <input type="number" class="form-control" id="editRating" placeholder="1-10" name="rating" max="10" min="1" value={{movies.fields.Rating}} required>
+            		</div>
+                    <div class="form-group">
+            			<label for="editNote">Note</label>
+                        <textarea class="form-control" name="notes" placeholder="Desc" id="editNote" value={{movies.fields.Notes}}></textarea>
+            		</div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+
+            	</form>
+            </div>
+		</div>
+	</div>
+</div>
